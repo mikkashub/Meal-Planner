@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head><title>Meal Generator</title></head>
+<body>
+    <h1>Meal Plan Generator</h1>
+    <div id="result">
+        <p>Weekly High Protein Plan</p>
+        <button id="save-btn">Save Meals</button>
+    </div>
+
+    <div id="confirm-modal" style="display:none">
+        <button id="confirm-save-btn">Confirm Save</button>
+    </div>
+
+    <p id="status-message"></p>
+
+    <script>
+        const saveBtn = document.getElementById('save-btn');
+        const confirmBtn = document.getElementById('confirm-save-btn');
+        const status = document.getElementById('status-message');
+
+        saveBtn.onclick = () => document.getElementById('confirm-modal').style.display = 'block';
+        
+        confirmBtn.onclick = () => {
+            // Logic for TC_005 (Duplicate check)
+            if (localStorage.getItem('saved')) {
+                status.innerText = "meal already exists";
+                status.style.color = "red";
+            } else {
+                status.innerText = "Saved successfully";
+                status.style.color = "green";
+                localStorage.setItem('saved', 'true');
+            }
+        };
+    </script>
+</body>
+</html>
